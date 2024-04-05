@@ -38,4 +38,19 @@ export class FoodController {
       res.status(500).json({ error: "Error adding food" });
     }
   }
+
+  async updateFood(req, res) {
+    const { id } = req.params;
+    const food = req.body;
+    const product = await FoodModel.update(+id, food);
+    console.debug(product);
+    res.json(product);
+  }
+
+  async deleteFood(req, res) {
+    const { id } = req.params;
+    const product = await FoodModel.delete(+id);
+    console.debug(product);
+    res.json(product);
+  }
 }
